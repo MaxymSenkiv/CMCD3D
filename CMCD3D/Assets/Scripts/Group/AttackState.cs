@@ -13,7 +13,6 @@ public class AttackState : State
 
     private void OnEnable()
     {
-        Debug.Log("Attack");
         _groupStateMachine.Attack?.Invoke(_groupStateMachine.AttackTarget);
     }
 }

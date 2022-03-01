@@ -1,5 +1,6 @@
-using System;
 using UnityEngine;
+using Enemy;
+using System.Collections;
 
 public class Stickman : MonoBehaviour
 {
@@ -16,13 +17,13 @@ public class Stickman : MonoBehaviour
     private void OnEnable()
     {
         _group.Run += Run;
-        _group.Attack += Attack;
+        _group.Attack += OnAttack;
     }
 
     private void OnDisable()
     {
         _group.Run -= Run;
-        _group.Attack -= Attack;
+        _group.Attack -= OnAttack;
     }
 
     private void FixedUpdate()
@@ -33,21 +34,29 @@ public class Stickman : MonoBehaviour
     private void Run()
     {
         transform.rotation = Quaternion.identity;
-        Debug.Log(_rigidbody.velocity);
-    }
-
-    private void Attack(Vector3 target)
-    {
-        transform.LookAt(target);
-        Debug.Log(_rigidbody.velocity);
     }
     
-    private void OnTriggerEnter(Collider other)
+    private void OnAttack(Vector3 target)
     {
-        if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
+        StartCoroutine(Attack(target));
+    }
+    
+    public IEnumerator Attack(Vector3 target)
+    {
+        while (true)
+        {
+            transform.LookAt(target);
+            yield return null;
+        }
+    }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<EnemyStickman>(out EnemyStickman enemy))
         {
             _group.EnemyCollided = true;
             _group.AttackTarget = enemy.transform.position;
+            Destroy(gameObject);
         }
     }
 }
