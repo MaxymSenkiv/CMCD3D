@@ -607,7 +607,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0bcdca085445acc4aa21304ffa02deba, type: 2}
+  - {fileID: 2100000, guid: 82e058676f98ef94c919f002b79dd4fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -680,8 +680,8 @@ GameObject:
   - component: {fileID: 3001291069492411268}
   - component: {fileID: 3001291069484913736}
   - component: {fileID: 6838361755728898683}
-  - component: {fileID: 6838361755728898680}
   - component: {fileID: 6838361755728898681}
+  - component: {fileID: 7386541344255194751}
   m_Layer: 0
   m_Name: Stickman
   m_TagString: Untagged
@@ -740,20 +740,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!64 &6838361755728898680
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3001291069492176870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: fa7f36c71b9e8fa4798df3a931c2fd92, type: 3}
 --- !u!114 &6838361755728898681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,6 +755,20 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _group: {fileID: 0}
   _speed: 3
+--- !u!136 &7386541344255194751
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001291069492176870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0.1}
 --- !u!1 &3001291069492176872
 GameObject:
   m_ObjectHideFlags: 0
