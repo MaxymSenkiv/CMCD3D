@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    private GroupStateMachine _groupStateMachine;
+    private PlayerGroup _playerGroup;
 
     private void Awake()
     {
-        _groupStateMachine = GetComponent<GroupStateMachine>();
+        _playerGroup = GetComponent<PlayerGroup>();
     }
 
     private void OnEnable()
     {
-        _groupStateMachine.Attack?.Invoke(_groupStateMachine.AttackTarget);
+        _playerGroup.Attack?.Invoke(_playerGroup.AttackTarget);
     }
 }

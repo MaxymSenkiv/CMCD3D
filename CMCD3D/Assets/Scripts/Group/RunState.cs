@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class RunState : State
 {
-    private GroupStateMachine _groupStateMachine;
+    private PlayerGroup _playerGroup;
 
     private void Awake()
     {
-        _groupStateMachine = GetComponent<GroupStateMachine>();
+        _playerGroup = GetComponent<PlayerGroup>();
     }
 
     private void FixedUpdate()
     {
-        _groupStateMachine.Run?.Invoke();
+        foreach (var unit in _playerGroup._unitsGroup)
+        {
+            unit.Run();
+        }
     }
 }
