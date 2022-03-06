@@ -15,17 +15,8 @@ public class Stickman : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
         _playerGroup = transform.parent.GetComponent<PlayerGroup>();
+        
         Died += OnDied;
-    }
-
-    private void OnEnable()
-    {
-        _playerGroup.Attack += OnAttack;
-    }
-
-    private void OnDisable()
-    {
-        _playerGroup.Attack -= OnAttack;
     }
 
     public void Run()
@@ -34,18 +25,10 @@ public class Stickman : MonoBehaviour
         _rigidbody.velocity = _speed * transform.forward;
     }
 
-    private void OnAttack(Vector3 target)
+    public void Attack(Vector3 target)
     {
-        StartCoroutine(Attack(target));
-    }
-
-    public IEnumerator Attack(Vector3 target)
-    {
-        while (true)
-        {
-            transform.LookAt(target);
-            yield return null;
-        }
+        _rigidbody.velocity = _speed * transform.forward;
+        transform.LookAt(target);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -53,8 +36,16 @@ public class Stickman : MonoBehaviour
         if (collision.gameObject.TryGetComponent<EnemyStickman>(out EnemyStickman enemy))
         {
             _playerGroup.EnemyCollided = true;
+            _playerGroup._unitsGroup.Remove(this);
             _playerGroup.AttackTarget = enemy.transform.position;
+            
             Destroy(gameObject);
+        }
+        else if (collision.gameObject.TryGetComponent<Boss>(out Boss boss))
+        {
+            _speed = 0;
+            _playerGroup.EnemyCollided = true;
+            _playerGroup.AttackTarget = boss.transform.position;
         }
     }
 
@@ -62,7 +53,9 @@ public class Stickman : MonoBehaviour
     {
         _playerGroup._unitsGroup.Remove(this);
         _rigidbody.velocity = Vector3.zero;
+        _rigidbody.freezeRotation = false;
         _capsuleCollider.enabled = false;
+        
         Vector3 explosionPosition = transform.position + Vector3.forward + Vector3.down;
         _rigidbody.AddExplosionForce(150f, explosionPosition, 3f,0.25f, ForceMode.Impulse);
         StartCoroutine(DestroyAfterDelay());

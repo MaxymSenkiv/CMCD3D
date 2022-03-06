@@ -11,8 +11,11 @@ public class AttackState : State
         _playerGroup = GetComponent<PlayerGroup>();
     }
 
-    private void OnEnable()
+    private void FixedUpdate()
     {
-        _playerGroup.Attack?.Invoke(_playerGroup.AttackTarget);
+        foreach (var unit in _playerGroup._unitsGroup)
+        {
+            unit.Attack(_playerGroup.AttackTarget);
+        }
     }
 }
