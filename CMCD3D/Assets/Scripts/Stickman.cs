@@ -7,7 +7,6 @@ public class Stickman : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private CapsuleCollider _capsuleCollider;
     [SerializeField] private PlayerGroup _playerGroup;
-    [SerializeField] private float _speed;
     public UnityAction Died;
 
     private void Awake()
@@ -22,12 +21,12 @@ public class Stickman : MonoBehaviour
     public void Run()
     {
         transform.rotation = Quaternion.identity;
-        _rigidbody.velocity = _speed * transform.forward;
+        _rigidbody.velocity = _playerGroup.Speed * transform.forward;
     }
 
     public void Attack(Vector3 target)
     {
-        _rigidbody.velocity = _speed * transform.forward;
+        _rigidbody.velocity = _playerGroup.Speed * transform.forward;
         transform.LookAt(target);
     }
 
@@ -43,7 +42,7 @@ public class Stickman : MonoBehaviour
         }
         else if (collision.gameObject.TryGetComponent<Boss>(out Boss boss))
         {
-            _speed = 0;
+            _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
             _playerGroup.EnemyCollided = true;
             _playerGroup.AttackTarget = boss.transform.position;
         }

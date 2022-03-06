@@ -14,7 +14,7 @@ public abstract class Group<T> : MonoBehaviour
         StartCoroutine(SpawnUnits(_startAmount));
     }
 
-    protected IEnumerator SpawnUnits(int amounts)
+    public IEnumerator SpawnUnits(int amounts)
     {
         for (int i = 0; i < amounts; i++)
         {
