@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 237203180}
   - component: {fileID: 237203182}
+  - component: {fileID: 237203187}
   - component: {fileID: 237203181}
   - component: {fileID: 237203183}
   - component: {fileID: 237203186}
@@ -186,11 +187,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unit: {fileID: 3001291069492411268, guid: 5f9a812a8110f8c40aa23007c998b377, type: 3}
   _unitsGroup: []
-  _startAmount: 1
+  _startAmount: 2
   _spawnDistance: 0
   AttackTarget: {x: 0, y: 0, z: 0}
   EnemyCollided: 0
-  Speed: 3
+  Speed: 6
 --- !u!114 &237203183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +244,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transitions: []
+--- !u!114 &237203187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237203179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3517431803c2a848aefaffbac8a6ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group: {fileID: 0}
+  _roadWidth: 10
+  _lastMousePosition: {x: 0, y: 0, z: 0}
+  _delta: 0
 --- !u!1 &466184048
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,7 +876,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.2588191, y: -0, z: -0, w: 0.9659258}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -878,7 +895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980ef233c7612204b98f10306a48fdc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 237203180}
+  _group: {fileID: 237203182}
+  _target: {x: 0, y: 0, z: 0}
   _offset: {x: 0, y: 10, z: -10}
 --- !u!1 &1112354277
 GameObject:
@@ -941,10 +959,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1
+  m_Height: 4
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0.1}
+  m_Center: {x: 0, y: 1, z: 0.1}
 --- !u!114 &1186614121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -957,7 +975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3992dd7cd17338b4483994096229cdf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxDamage: 2
+  _maxDamage: 0
   _attackDistance: 10
   _animator: {fileID: 0}
   _attack: 0
@@ -1572,7 +1590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 652729822588408268, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 652729822588408268, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1606,9 +1624,14 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 126
       objectReference: {fileID: 0}
+    - target: {fileID: 4921678766909209586, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6258999980507677297, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ff98c366fe56fba468e2dd9ce7ae5662, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4921678766909209586, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}

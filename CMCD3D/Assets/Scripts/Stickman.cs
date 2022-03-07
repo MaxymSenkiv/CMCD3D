@@ -5,14 +5,14 @@ using UnityEngine.Events;
 public class Stickman : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private CapsuleCollider _capsuleCollider;
+    [SerializeField] private SphereCollider _collider;
     [SerializeField] private PlayerGroup _playerGroup;
     public UnityAction Died;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _capsuleCollider = GetComponent<CapsuleCollider>();
+        _collider = GetComponent<SphereCollider>();
         _playerGroup = transform.parent.GetComponent<PlayerGroup>();
         
         Died += OnDied;
@@ -50,10 +50,11 @@ public class Stickman : MonoBehaviour
 
     private void OnDied()
     {
+        Debug.Log("1");
         _playerGroup._unitsGroup.Remove(this);
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.freezeRotation = false;
-        _capsuleCollider.enabled = false;
+        _collider.enabled = false;
         
         Vector3 explosionPosition = transform.position + Vector3.forward + Vector3.down;
         _rigidbody.AddExplosionForce(150f, explosionPosition, 3f,0.25f, ForceMode.Impulse);
