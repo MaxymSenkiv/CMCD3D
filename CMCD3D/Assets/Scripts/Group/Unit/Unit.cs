@@ -23,11 +23,9 @@ public class Unit : MonoBehaviour
         _animator.Play("Fast Run");
     }
 
-    
-
     private void OnDied()
     {
-        _playerGroup._unitsGroup.Remove(this);
+        _playerGroup.UnitsGroup.Remove(this);
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.freezeRotation = false;
         _collider.enabled = false;

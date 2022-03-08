@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Group<T> : MonoBehaviour
 {
     [SerializeField] protected Transform _unit;
-    [SerializeField] public List<T> _unitsGroup;
+    public List<T> UnitsGroup;
     [SerializeField] protected int _startAmount;
     [SerializeField] protected float _spawnDistance;
     
@@ -25,7 +25,7 @@ public abstract class Group<T> : MonoBehaviour
                 transform.position.y,
                 transform.position.z + ((2 - i%4)%2) * _spawnDistance);
             Transform unit = Instantiate(_unit, spawnPoint, Quaternion.identity, transform);
-            _unitsGroup.Add(unit.GetComponent<T>());
+            UnitsGroup.Add(unit.GetComponent<T>());
             yield return new WaitForSeconds(0.1f/(amounts-1));
         }
     }

@@ -26,8 +26,8 @@ public class UnitAttack : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
             _playerGroup.EnemyCollided = true;
-            _playerGroup._unitsGroup.Remove(this.GetComponent<Unit>());
-            _playerGroup.AttackTarget = enemy.transform.position;
+            _playerGroup.UnitsGroup.Remove(this.GetComponent<Unit>());
+            _playerGroup.AttackTarget = enemy.transform.parent.transform;
             
             Destroy(gameObject);
         }
@@ -36,7 +36,7 @@ public class UnitAttack : MonoBehaviour
             _canAttack = false;
             //_rigidbody.constraints = RigidbodyConstraints.FreezePosition;
             _playerGroup.EnemyCollided = true;
-            _playerGroup.AttackTarget = boss.transform.position;
+            _playerGroup.AttackTarget = boss.transform;
         }
     }
 }

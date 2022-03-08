@@ -11,7 +11,7 @@ public class RunState : State
 
     private void FixedUpdate()
     {
-        foreach (var unit in _playerGroup._unitsGroup)
+        foreach (var unit in _playerGroup.UnitsGroup)
         {
             unit.GetComponent<UnitRun>().Run();
         }

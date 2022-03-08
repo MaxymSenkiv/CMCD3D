@@ -40,9 +40,9 @@ public class GroupControl : MonoBehaviour
 
     private bool CanMoveLeft()
     {
-        foreach (var stickman in _group._unitsGroup)
+        foreach (var unit in _group.UnitsGroup)
         {
-            if (stickman.GetComponent<BordersChecker>().LeftEdge)
+            if (unit.GetComponent<BordersChecker>().LeftEdge)
                 return false;
         }
 
@@ -51,9 +51,9 @@ public class GroupControl : MonoBehaviour
     
     private bool CanMoveRight()
     {
-        foreach (var stickman in _group._unitsGroup)
+        foreach (var unit in _group.UnitsGroup)
         {
-            if (stickman.GetComponent<BordersChecker>().RightEdge)
+            if (unit.GetComponent<BordersChecker>().RightEdge)
                 return false;
         }
 

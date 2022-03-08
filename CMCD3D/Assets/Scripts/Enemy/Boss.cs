@@ -31,7 +31,7 @@ public class Boss : MonoBehaviour
         {
             List<Unit> deadUnits = new List<Unit>();
             yield return new WaitForSeconds(0.5f);
-            foreach (var unit in playerGroup._unitsGroup)
+            foreach (var unit in playerGroup.UnitsGroup)
             {
                 if (Vector3.Distance(transform.position, unit.transform.position) < _attackDistance
                     && deadUnits.Count < _maxDamage)

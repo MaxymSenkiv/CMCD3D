@@ -23,7 +23,7 @@ public class AmountChanger : MonoBehaviour
         if (!Multiplied)
         {
             Multiplied = true;
-            StartCoroutine(playerGroup.SpawnUnits(playerGroup._unitsGroup.Count * (multiplier - 1)));
+            StartCoroutine(playerGroup.SpawnUnits(playerGroup.UnitsGroup.Count * (multiplier - 1)));
         }
     }
 }

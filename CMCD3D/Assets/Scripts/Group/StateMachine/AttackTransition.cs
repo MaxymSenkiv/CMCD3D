@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class AttackTransition : Transition
 {
     private PlayerGroup _playerGroup;
@@ -11,7 +9,10 @@ public class AttackTransition : Transition
     
     private void Update()
     {
-        if(_playerGroup.EnemyCollided)
+        if (_playerGroup.EnemyCollided)
+        {
             NeedTransit = true;
+            _playerGroup.EnemyCollided = false;
+        }
     }
 }

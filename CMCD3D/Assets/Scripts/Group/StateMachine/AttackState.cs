@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class AttackState : State
 {
     private PlayerGroup _playerGroup;
@@ -11,11 +7,11 @@ public class AttackState : State
         _playerGroup = GetComponent<PlayerGroup>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        foreach (var unit in _playerGroup._unitsGroup)
+        foreach (var unit in _playerGroup.UnitsGroup)
         {
-            unit.GetComponent<UnitAttack>().Attack(_playerGroup.AttackTarget);
+            unit.GetComponent<UnitAttack>().Attack(_playerGroup.AttackTarget.position);
         }
     }
 }

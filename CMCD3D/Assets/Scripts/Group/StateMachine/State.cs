@@ -25,7 +25,7 @@ public abstract class State : MonoBehaviour
 
     public void Exit()
     {
-        if (enabled == true)
+        if (enabled)
         {
             foreach (var transition in _transitions)
             {

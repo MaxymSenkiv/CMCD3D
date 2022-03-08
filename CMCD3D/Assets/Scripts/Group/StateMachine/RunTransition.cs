@@ -1,8 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class RunTransition : MonoBehaviour
+public class RunTransition : Transition
 {
+    private PlayerGroup _playerGroup;
+
+    public override void Enable()
+    {
+        _playerGroup = GetComponent<PlayerGroup>();
+    }
     
+    private void Update()
+    {
+        if (_playerGroup.AttackTarget.GetComponent<EnemyGroup>().UnitsGroup.Count == 0)
+            NeedTransit = true;
+    }
 }

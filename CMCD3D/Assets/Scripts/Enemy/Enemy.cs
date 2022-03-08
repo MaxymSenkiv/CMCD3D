@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Unit>(out Unit unit))
         {
             _group.Attack?.Invoke(unit.transform.position);
+            _group.UnitsGroup.Remove(this);
             Destroy(gameObject);
         }
     }

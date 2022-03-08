@@ -14,9 +14,9 @@ public class CameraFollower : MonoBehaviour
 
     private void FollowUnits()
     {
-        if (_group._unitsGroup.Count != 0)
+        if (_group.UnitsGroup.Count != 0)
         {
-            _target = _group._unitsGroup[0].transform.position;
+            _target = _group.UnitsGroup[0].transform.position;
             transform.position = new Vector3(transform.position.x,
                 _target.y + _offset.y,
                 _target.z + _offset.z);
