@@ -26,7 +26,7 @@ public abstract class Group<T> : MonoBehaviour
                 transform.position.z + ((2 - i%4)%2) * _spawnDistance);
             Transform unit = Instantiate(_unit, spawnPoint, Quaternion.identity, transform);
             _unitsGroup.Add(unit.GetComponent<T>());
-            yield return new WaitForSeconds(1f/(amounts-1));
+            yield return new WaitForSeconds(0.1f/(amounts-1));
         }
     }
 }

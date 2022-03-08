@@ -13,7 +13,7 @@ public class RunState : State
     {
         foreach (var unit in _playerGroup._unitsGroup)
         {
-            unit.Run();
+            unit.GetComponent<UnitRun>().Run();
         }
     }
 }

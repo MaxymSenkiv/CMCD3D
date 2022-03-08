@@ -5,6 +5,25 @@ using UnityEngine.Events;
 
 public class AmountChanger : MonoBehaviour
 {
-    public UnityAction<PlayerGroup> Triggered;
+    public UnityAction<PlayerGroup, int> Triggered;
     public bool Multiplied;
+    
+    private void OnEnable()
+    {
+        Triggered += OnTriggered;
+    }
+
+    private void OnDisable()
+    {
+        Triggered -= OnTriggered;
+    }
+
+    private void OnTriggered(PlayerGroup playerGroup, int multiplier)
+    {
+        if (!Multiplied)
+        {
+            Multiplied = true;
+            StartCoroutine(playerGroup.SpawnUnits(playerGroup._unitsGroup.Count * (multiplier - 1)));
+        }
+    }
 }

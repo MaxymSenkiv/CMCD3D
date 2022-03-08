@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(UnitAttack))]
 public class Unit : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
@@ -9,7 +10,6 @@ public class Unit : MonoBehaviour
     [SerializeField] private SphereCollider _collider;
     [SerializeField] private PlayerGroup _playerGroup;
     public UnityAction Died;
-    public bool _canAttack = true;
 
     private void Awake()
     {
@@ -23,37 +23,7 @@ public class Unit : MonoBehaviour
         _animator.Play("Fast Run");
     }
 
-    public void Run()
-    {
-        transform.rotation = Quaternion.identity;
-        _rigidbody.velocity = _playerGroup.Speed * transform.forward;
-    }
-
-    public void Attack(Vector3 target)
-    {
-        transform.LookAt(target);
-        if(_canAttack)
-            _rigidbody.velocity = _playerGroup.Speed * transform.forward;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
-        {
-            _playerGroup.EnemyCollided = true;
-            _playerGroup._unitsGroup.Remove(this);
-            _playerGroup.AttackTarget = enemy.transform.position;
-            
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.TryGetComponent<Boss>(out Boss boss))
-        {
-            _canAttack = false;
-            //_rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-            _playerGroup.EnemyCollided = true;
-            _playerGroup.AttackTarget = boss.transform.position;
-        }
-    }
+    
 
     private void OnDied()
     {

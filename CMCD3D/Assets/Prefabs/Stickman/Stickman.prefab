@@ -679,10 +679,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3001291069492411268}
   - component: {fileID: 3001291069484913736}
+  - component: {fileID: 2576189040336167135}
   - component: {fileID: 6838361755728898683}
   - component: {fileID: 6838361755728898681}
+  - component: {fileID: 2982117536443200262}
   - component: {fileID: 3158714180597003850}
-  - component: {fileID: 2576189040336167135}
   m_Layer: 0
   m_Name: Stickman
   m_TagString: Untagged
@@ -725,6 +726,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &2576189040336167135
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001291069492176870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &6838361755728898683
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -754,9 +768,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
+  _animator: {fileID: 0}
   _collider: {fileID: 0}
   _playerGroup: {fileID: 0}
   _canAttack: 1
+--- !u!114 &2982117536443200262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001291069492176870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66615ccbd839bc349b21274358aaec80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 0}
+  _playerGroup: {fileID: 0}
 --- !u!114 &3158714180597003850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,19 +801,6 @@ MonoBehaviour:
   _borderLength: 4
   LeftEdge: 0
   RightEdge: 0
---- !u!135 &2576189040336167135
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3001291069492176870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &3001291069492176872
 GameObject:
   m_ObjectHideFlags: 0

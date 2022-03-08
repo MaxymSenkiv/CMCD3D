@@ -15,7 +15,7 @@ public class AttackState : State
     {
         foreach (var unit in _playerGroup._unitsGroup)
         {
-            unit.Attack(_playerGroup.AttackTarget);
+            unit.GetComponent<UnitAttack>().Attack(_playerGroup.AttackTarget);
         }
     }
 }

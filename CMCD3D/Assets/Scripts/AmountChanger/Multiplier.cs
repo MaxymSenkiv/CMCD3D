@@ -13,30 +13,12 @@ public class Multiplier : MonoBehaviour
         _screen.text = "* " + _multiplier;
     }
 
-    private void OnEnable()
-    {
-        _amountChanger.Triggered += OnTriggered;
-    }
-
-    private void OnDisable()
-    {
-        _amountChanger.Triggered -= OnTriggered;
-    }
-
-    private void OnTriggered(PlayerGroup playerGroup)
-    {
-        if (!_amountChanger.Multiplied)
-        {
-            _amountChanger.Multiplied = true;
-            StartCoroutine(playerGroup.SpawnUnits(playerGroup._unitsGroup.Count * (_multiplier - 1)));
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Unit>(out Unit unit) && !_amountChanger.Multiplied)
+        if (other.gameObject.TryGetComponent<Unit>(out Unit unit))
         {
-            _amountChanger.Triggered.Invoke(unit.transform.parent.GetComponent<PlayerGroup>());
+            _amountChanger.Triggered.Invoke(unit.transform.parent.GetComponent<PlayerGroup>(), _multiplier);
         }
     }
 }

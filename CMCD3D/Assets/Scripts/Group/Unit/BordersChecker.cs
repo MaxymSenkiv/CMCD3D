@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Unit), typeof(UnitRun), typeof(UnitAttack))]
 public class BordersChecker : MonoBehaviour
 {
     [SerializeField] private int _borderLength;
