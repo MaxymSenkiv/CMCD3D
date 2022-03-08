@@ -4,12 +4,14 @@ using UnityEngine;
 public class EnemyStickman : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Animator _animator;
     [SerializeField] private EnemyGroup _group;
     [SerializeField] private float _speed;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
         _group = transform.parent.GetComponent<EnemyGroup>();
     }
 
@@ -35,6 +37,7 @@ public class EnemyStickman : MonoBehaviour
 
     private void OnAttack(Vector3 target)
     {
+        _animator.Play("Fast Run");
         StartCoroutine(Attack(target));
     }
 

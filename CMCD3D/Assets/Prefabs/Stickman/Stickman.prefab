@@ -756,6 +756,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _collider: {fileID: 0}
   _playerGroup: {fileID: 0}
+  _canAttack: 1
 --- !u!114 &3158714180597003850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,8 +783,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &3001291069492176872
 GameObject:
   m_ObjectHideFlags: 0

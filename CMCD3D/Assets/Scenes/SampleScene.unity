@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unit: {fileID: 3001291069492411268, guid: 5f9a812a8110f8c40aa23007c998b377, type: 3}
   _unitsGroup: []
-  _startAmount: 2
+  _startAmount: 10
   _spawnDistance: 0
   AttackTarget: {x: 0, y: 0, z: 0}
   EnemyCollided: 0
@@ -995,7 +995,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1557860384
 Transform:
   m_ObjectHideFlags: 0
@@ -1562,7 +1562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 163579825831791478, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 652729822588408268, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
       propertyPath: m_RootOrder
@@ -1620,18 +1620,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4921678766909209586, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 4921678766909209586, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6258999980507677297, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ff98c366fe56fba468e2dd9ce7ae5662, type: 2}
-    m_RemovedComponents:
-    - {fileID: 4921678766909209586, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}

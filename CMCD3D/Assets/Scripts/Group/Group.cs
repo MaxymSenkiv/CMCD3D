@@ -18,8 +18,8 @@ public abstract class Group<T> : MonoBehaviour
     {
         for (int i = 0; i < amounts; i++)
         {
-            if (i % 4 == 0 && i > 0)
-                _spawnDistance += 3f;
+            //if (i % 4 == 0 && i > 0)
+                //_spawnDistance += 3f;
             Vector3 spawnPoint = new Vector3(
                 transform.position.x + ((i%4-1)%2) * _spawnDistance, 
                 transform.position.y,
