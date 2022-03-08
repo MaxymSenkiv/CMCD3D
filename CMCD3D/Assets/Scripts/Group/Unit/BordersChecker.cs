@@ -11,5 +11,12 @@ public class BordersChecker : MonoBehaviour
     {
         LeftEdge = transform.position.x <= -_borderLength;
         RightEdge = transform.position.x >= _borderLength;
+
+        if (LeftEdge)
+            transform.position = new Vector3(-_borderLength, transform.position.y, transform.position.z);
+        else if (RightEdge)
+            transform.position =  new Vector3(_borderLength, transform.position.y, transform.position.z);
+        
+        
     }
 }

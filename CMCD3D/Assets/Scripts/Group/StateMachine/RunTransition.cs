@@ -9,7 +9,8 @@ public class RunTransition : Transition
     
     private void Update()
     {
-        if (_playerGroup.AttackTarget.GetComponent<EnemyGroup>().UnitsGroup.Count == 0)
+        if (_playerGroup.AttackTarget.TryGetComponent<EnemyGroup>(out EnemyGroup enemyGroup) 
+            && enemyGroup.UnitsGroup.Count == 0)
             NeedTransit = true;
     }
 }

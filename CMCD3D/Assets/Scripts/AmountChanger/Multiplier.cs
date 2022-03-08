@@ -12,8 +12,7 @@ public class Multiplier : MonoBehaviour
         _amountChanger = GetComponentInParent<AmountChanger>();
         _screen.text = "* " + _multiplier;
     }
-
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent<Unit>(out Unit unit))

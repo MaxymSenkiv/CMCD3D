@@ -4,7 +4,7 @@ using UnityEngine;
 public class CameraFollower : MonoBehaviour
 {
     [SerializeField] private PlayerGroup _group;
-    [SerializeField] private Vector3 _target;
+    [SerializeField] private float _target;
     [SerializeField] private Vector3 _offset;
 
     void Update()
@@ -16,10 +16,15 @@ public class CameraFollower : MonoBehaviour
     {
         if (_group.UnitsGroup.Count != 0)
         {
-            _target = _group.UnitsGroup[0].transform.position;
+            foreach (var unit in _group.UnitsGroup)
+            {
+                _target += unit.transform.position.z;
+            }
+            _target /= _group.UnitsGroup.Count;
+            
             transform.position = new Vector3(transform.position.x,
-                _target.y + _offset.y,
-                _target.z + _offset.z);
+                _offset.y,
+                _target + _offset.z);
         }
     }
 }

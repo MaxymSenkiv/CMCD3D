@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 2982117536443200262}
   - component: {fileID: 3158714180597003850}
   m_Layer: 0
-  m_Name: Stickman
+  m_Name: Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -753,7 +753,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 1
 --- !u!114 &6838361755728898681
 MonoBehaviour:
@@ -771,7 +771,6 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _collider: {fileID: 0}
   _playerGroup: {fileID: 0}
-  _canAttack: 1
 --- !u!114 &2982117536443200262
 MonoBehaviour:
   m_ObjectHideFlags: 0

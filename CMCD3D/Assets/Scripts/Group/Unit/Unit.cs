@@ -19,8 +19,6 @@ public class Unit : MonoBehaviour
         _playerGroup = transform.parent.GetComponent<PlayerGroup>();
         
         Died += OnDied;
-        
-        _animator.Play("Fast Run");
     }
 
     private void OnDied()
