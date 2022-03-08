@@ -17,7 +17,7 @@ public class Boss : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out Stickman stickman) && !_attack)
+        if (collision.gameObject.TryGetComponent(out Unit unit) && !_attack)
         {
             StartCoroutine(Attack(collision.transform.parent.GetComponent<PlayerGroup>()));
         }
@@ -29,14 +29,14 @@ public class Boss : MonoBehaviour
         _animator.Play("Kick");
         while (true)
         {
-            List<Stickman> deadUnits = new List<Stickman>();
+            List<Unit> deadUnits = new List<Unit>();
             yield return new WaitForSeconds(0.5f);
-            foreach (var stickman in playerGroup._unitsGroup)
+            foreach (var unit in playerGroup._unitsGroup)
             {
-                if (Vector3.Distance(transform.position, stickman.transform.position) < _attackDistance
+                if (Vector3.Distance(transform.position, unit.transform.position) < _attackDistance
                     && deadUnits.Count < _maxDamage)
                 {
-                    deadUnits.Add(stickman);
+                    deadUnits.Add(unit);
                 }
             }
 

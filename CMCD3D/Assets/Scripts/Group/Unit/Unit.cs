@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
 
-public class Stickman : MonoBehaviour
+public class Unit : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Animator _animator;
@@ -38,7 +38,7 @@ public class Stickman : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<EnemyStickman>(out EnemyStickman enemy))
+        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
             _playerGroup.EnemyCollided = true;
             _playerGroup._unitsGroup.Remove(this);

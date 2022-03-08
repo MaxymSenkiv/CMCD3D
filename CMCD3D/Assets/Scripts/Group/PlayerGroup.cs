@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerGroup : Group<Stickman>
+public class PlayerGroup : Group<Unit>
 {
     public Vector3 AttackTarget;
     public bool EnemyCollided;

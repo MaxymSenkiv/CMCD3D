@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyStickman : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Animator _animator;
@@ -27,10 +27,9 @@ public class EnemyStickman : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<Stickman>(out Stickman stickman))
+        if (collision.gameObject.TryGetComponent<Unit>(out Unit unit))
         {
-            _group.EnemyCollided = true;
-            _group.Attack?.Invoke(stickman.transform.position);
+            _group.Attack?.Invoke(unit.transform.position);
             Destroy(gameObject);
         }
     }

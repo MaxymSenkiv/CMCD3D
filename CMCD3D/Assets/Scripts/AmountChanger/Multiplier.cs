@@ -34,9 +34,9 @@ public class Multiplier : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Stickman>(out Stickman stickman) && !_amountChanger.Multiplied)
+        if (other.gameObject.TryGetComponent<Unit>(out Unit unit) && !_amountChanger.Multiplied)
         {
-            _amountChanger.Triggered.Invoke(stickman.transform.parent.GetComponent<PlayerGroup>());
+            _amountChanger.Triggered.Invoke(unit.transform.parent.GetComponent<PlayerGroup>());
         }
     }
 }
