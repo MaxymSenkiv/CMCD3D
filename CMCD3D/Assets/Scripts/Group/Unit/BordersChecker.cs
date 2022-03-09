@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Unit), typeof(UnitRun), typeof(UnitAttack))]
 public class BordersChecker : MonoBehaviour
 {
     [SerializeField] private int _borderLength;
@@ -16,7 +15,5 @@ public class BordersChecker : MonoBehaviour
             transform.position = new Vector3(-_borderLength, transform.position.y, transform.position.z);
         else if (RightEdge)
             transform.position =  new Vector3(_borderLength, transform.position.y, transform.position.z);
-        
-        
     }
 }
