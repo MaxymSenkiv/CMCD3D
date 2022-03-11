@@ -25,7 +25,7 @@ public class Unit : MonoBehaviour
     {
         _playerGroup.UnitsGroup.Remove(this);
         _rigidbody.velocity = Vector3.zero;
-        _rigidbody.freezeRotation = false;
+        _rigidbody.constraints = RigidbodyConstraints.None;
         _collider.enabled = false;
         
         Vector3 explosionPosition = transform.position + Vector3.forward + Vector3.down;

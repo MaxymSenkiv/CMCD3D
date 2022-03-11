@@ -33,7 +33,7 @@ public class UnitAttack : MonoBehaviour
         else if (collision.gameObject.TryGetComponent<Boss>(out Boss boss))
         {
             _canAttack = false;
-            //_rigidbody.constraints = RigidbodyConstraints.FreezePosition;
+            _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
             _playerGroup.EnemyCollided = true;
             _playerGroup.AttackTarget = boss.transform;
         }

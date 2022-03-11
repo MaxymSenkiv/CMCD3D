@@ -49,7 +49,7 @@ public abstract class Group<T> : MonoBehaviour where T : MonoBehaviour
             if(run)
                 unit.GetComponent<Animator>().Play("Fast Run");
             UnitsGroup.Add(unit.GetComponent<T>());
-            yield return new WaitForSeconds(0f/(amounts-1));
+            yield return new WaitForSeconds(0f/(amounts));
         }
 
         StartCoroutine(GroupUnits());
