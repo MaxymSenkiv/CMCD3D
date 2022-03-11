@@ -6,19 +6,19 @@ using UnityEngine.Events;
 public class Unit : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private Animator _animator;
     [SerializeField] private SphereCollider _collider;
     [SerializeField] private PlayerGroup _playerGroup;
     public UnityAction Died;
+    public UnityAction ObstacleCollided;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
         _collider = GetComponent<SphereCollider>();
         _playerGroup = transform.parent.GetComponent<PlayerGroup>();
         
         Died += OnDied;
+        ObstacleCollided += OnObstacleCollided;
     }
 
     private void OnDied()
@@ -36,6 +36,12 @@ public class Unit : MonoBehaviour
     private IEnumerator DestroyAfterDelay()
     {
         yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+    }
+
+    private void OnObstacleCollided()
+    {
+        _playerGroup.UnitsGroup.Remove(this);
         Destroy(gameObject);
     }
 }

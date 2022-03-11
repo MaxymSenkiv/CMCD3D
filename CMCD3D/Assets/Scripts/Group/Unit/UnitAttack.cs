@@ -26,10 +26,9 @@ public class UnitAttack : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
             _playerGroup.EnemyCollided = true;
-            _playerGroup.UnitsGroup.Remove(this.GetComponent<Unit>());
             _playerGroup.AttackTarget = enemy.transform.parent.transform;
-            
-            Destroy(gameObject);
+
+            GetComponent<Unit>().ObstacleCollided.Invoke();
         }
         else if (collision.gameObject.TryGetComponent<Boss>(out Boss boss))
         {
