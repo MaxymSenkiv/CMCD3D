@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerGroup : Group<Unit>
+public class PlayerGroup : Group.Group
 {
     public Transform AttackTarget;
     public bool EnemyCollided;

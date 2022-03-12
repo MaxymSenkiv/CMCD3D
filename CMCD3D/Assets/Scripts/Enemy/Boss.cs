@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,7 +35,7 @@ public class Boss : MonoBehaviour
                 if (Vector3.Distance(transform.position, unit.transform.position) < _attackDistance
                     && deadUnits.Count < _maxDamage)
                 {
-                    deadUnits.Add(unit);
+                    deadUnits.Add((Unit)unit);
                 }
             }
 

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Person
 {
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Animator _animator;

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(UnitAttack))]
-public class Unit : MonoBehaviour
+public class Unit : Person
 {
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private SphereCollider _collider;
