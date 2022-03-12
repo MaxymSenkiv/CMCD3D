@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class Enemy : Person
 {
-    [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private EnemyGroup _group;
-    [SerializeField] private float _speed;
+    [SerializeField] protected Animator _animator;
+    //[SerializeField] private float _speed;
+    [SerializeField] protected EnemyGroup _group;
 
     private void Awake()
     {
@@ -29,6 +28,7 @@ public class Enemy : Person
     {
         if (collision.gameObject.TryGetComponent<Unit>(out Unit unit))
         {
+            _group.Speed = unit.GetComponentInParent<PlayerGroup>().Speed;
             _group.Attack?.Invoke(unit.transform.position);
             _group.UnitsGroup.Remove(this);
             Destroy(gameObject);
@@ -46,7 +46,7 @@ public class Enemy : Person
         while (true)
         {
             transform.LookAt(target);
-            _rigidbody.velocity = _speed * transform.forward;
+            _rigidbody.velocity = _group.Speed * transform.forward;
             yield return null;
         }
     }

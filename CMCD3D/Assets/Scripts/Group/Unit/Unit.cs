@@ -5,9 +5,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(UnitAttack))]
 public class Unit : Person
 {
-    [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private SphereCollider _collider;
-    [SerializeField] private PlayerGroup _playerGroup;
+    [SerializeField] private PlayerGroup _group;
     public UnityAction Died;
     public UnityAction ObstacleCollided;
 
@@ -15,7 +14,7 @@ public class Unit : Person
     {
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<SphereCollider>();
-        _playerGroup = transform.parent.GetComponent<PlayerGroup>();
+        _group = transform.parent.GetComponent<PlayerGroup>();
         
         Died += OnDied;
         ObstacleCollided += OnObstacleCollided;
@@ -23,7 +22,7 @@ public class Unit : Person
 
     private void OnDied()
     {
-        _playerGroup.UnitsGroup.Remove(this);
+        _group.UnitsGroup.Remove(this);
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.constraints = RigidbodyConstraints.None;
         _collider.enabled = false;
@@ -41,7 +40,7 @@ public class Unit : Person
 
     private void OnObstacleCollided()
     {
-        _playerGroup.UnitsGroup.Remove(this);
+        _group.UnitsGroup.Remove(this);
         Destroy(gameObject);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Person : MonoBehaviour
+public abstract class Person : MonoBehaviour
 {
-    
+    [SerializeField] protected Rigidbody _rigidbody;
 }

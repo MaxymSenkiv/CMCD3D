@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -480,6 +481,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _group: {fileID: 237203182}
   _offsetZ: 0
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1186614116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 163579825831791478, guid: 07807b202e3e32b4b8c26423618cda82, type: 3}
@@ -1102,11 +1136,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5746118716986860253, guid: 760c32b1769742047ad3632626c0d77c, type: 3}
       propertyPath: Speed
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5746118716986860253, guid: 760c32b1769742047ad3632626c0d77c, type: 3}
       propertyPath: _startAmount
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5746118716986860253, guid: 760c32b1769742047ad3632626c0d77c, type: 3}
       propertyPath: _groupingTime
@@ -1263,6 +1297,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7289725670765744310, guid: 748921402652bb840942c2d5c075b190, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289725670765744311, guid: 748921402652bb840942c2d5c075b190, type: 3}
+      propertyPath: Speed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7289725670765744311, guid: 748921402652bb840942c2d5c075b190, type: 3}

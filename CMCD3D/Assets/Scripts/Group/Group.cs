@@ -9,6 +9,7 @@ namespace Group
         [SerializeField] protected Transform _unit;
         public List<Person> UnitsGroup;
         [SerializeField] protected int _startAmount;
+        public float Speed;
 
         [SerializeField] private float _groupingForce;
         [SerializeField] private float _groupingTime;
