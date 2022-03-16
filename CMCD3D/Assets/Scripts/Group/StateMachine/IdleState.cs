@@ -9,6 +9,12 @@ public class IdleState : State
     {
     }
 
+    private void Awake()
+    {
+        _startText.enabled = true;
+        _startText.gameObject.SetActive(true);
+    }
+
     private void OnDisable()
     {
         _startText.enabled = false;

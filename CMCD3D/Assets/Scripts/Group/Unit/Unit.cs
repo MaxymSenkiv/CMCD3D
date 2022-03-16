@@ -37,7 +37,7 @@ public class Unit : Person
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
-
+    
     private void OnObstacleCollided()
     {
         _group.UnitsGroup.Remove(this);

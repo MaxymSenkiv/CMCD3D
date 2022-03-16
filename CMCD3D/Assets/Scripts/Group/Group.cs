@@ -61,7 +61,7 @@ namespace Group
             StartCoroutine(GroupUnits());
         }
 
-        private IEnumerator GroupUnits()
+        public IEnumerator GroupUnits()
         {
             for (int i = 0; i < _timesOfGrouping; i++)
             {
