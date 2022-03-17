@@ -15,7 +15,7 @@ namespace Group
         [SerializeField] private float _groupingTime;
         [SerializeField] private int _timesOfGrouping;
 
-        public Vector3 SpawnPoint
+        public Vector3 AverageUnitsPosition
         {
             get
             {
@@ -40,7 +40,7 @@ namespace Group
 
         private void Awake()
         {
-            StartCoroutine(SpawnUnits(_startAmount, SpawnPoint, false));
+            StartCoroutine(SpawnUnits(_startAmount, AverageUnitsPosition, false));
         }
 
         public IEnumerator SpawnUnits(int amounts, Vector3 spawnPoint, bool run)
@@ -68,9 +68,9 @@ namespace Group
                 foreach (var unit in UnitsGroup)
                 {
                     Vector3 forceVector = new Vector3(
-                        SpawnPoint.x - unit.transform.position.x,
+                        AverageUnitsPosition.x - unit.transform.position.x,
                         0,
-                        SpawnPoint.z - unit.transform.position.z);
+                        AverageUnitsPosition.z - unit.transform.position.z);
                     unit.GetComponent<Rigidbody>().AddForce(forceVector * (_groupingForce / Mathf.Pow(2, i)));
                 }
 

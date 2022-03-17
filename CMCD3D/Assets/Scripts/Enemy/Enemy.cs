@@ -31,7 +31,7 @@ public class Enemy : Person
         {
             _group.UnitsGroup.Remove(this);
             _group.Speed = unit.GetComponentInParent<PlayerGroup>().Speed;
-            _group.Attack?.Invoke(unit.transform.position);
+            _group.Attack?.Invoke(unit.GetComponentInParent<PlayerGroup>().AverageUnitsPosition);
             unit.GetComponent<UnitAttack>().EnemyCollided(this);
             Destroy(gameObject);
         }
@@ -39,6 +39,7 @@ public class Enemy : Person
 
     private void OnAttack(Vector3 target)
     {
+        _group.Attack -= OnAttack;
         _animator.Play("Fast Run");
         StartCoroutine(Attack(target));
     }

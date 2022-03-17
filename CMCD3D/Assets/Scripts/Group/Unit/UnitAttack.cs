@@ -38,8 +38,9 @@ public class UnitAttack : MonoBehaviour
     private void OnEnemyCollided(Enemy enemy)
     {
         _group.UnitsGroup.Remove(GetComponent<Unit>());
+        if (!_group.EnemyCollided)
+            _group.AttackTarget = enemy.transform.parent.transform;
         _group.EnemyCollided = true;
-        _group.AttackTarget = enemy.transform.parent.transform;
         Destroy(gameObject);
     }
 }

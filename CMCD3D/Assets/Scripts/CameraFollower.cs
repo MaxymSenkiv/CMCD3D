@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CameraFollower : MonoBehaviour
@@ -11,7 +10,7 @@ public class CameraFollower : MonoBehaviour
         _offsetZ = transform.position.z;
     }
 
-    void Update()
+    void LateUpdate()
     {
         FollowUnits();
     }
@@ -20,6 +19,6 @@ public class CameraFollower : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x,
                                         transform.position.y,
-                                        _group.SpawnPoint.z + _offsetZ);
+                                        _group.AverageUnitsPosition.z + _offsetZ);
     }
 }

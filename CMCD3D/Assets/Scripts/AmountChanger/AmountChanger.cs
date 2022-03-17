@@ -24,7 +24,7 @@ public class AmountChanger : MonoBehaviour
         {
             Multiplied = true;
             StartCoroutine(playerGroup.SpawnUnits(playerGroup.UnitsGroup.Count * (multiplier - 1),
-                                                        playerGroup.SpawnPoint,
+                                                        playerGroup.AverageUnitsPosition,
                                                         true));
         }
     }
