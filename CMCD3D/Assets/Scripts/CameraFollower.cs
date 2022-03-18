@@ -12,13 +12,14 @@ public class CameraFollower : MonoBehaviour
 
     void LateUpdate()
     {
-        FollowUnits();
-    }
+        if (_group.UnitsGroup.Count == 0)
+        {
+            enabled = false;
+            return;
+        }
 
-    private void FollowUnits()
-    {
         transform.position = new Vector3(transform.position.x,
-                                        transform.position.y,
-                                        _group.AverageUnitsPosition.z + _offsetZ);
+            transform.position.y,
+            _group.AverageUnitsPosition.z + _offsetZ);
     }
 }
