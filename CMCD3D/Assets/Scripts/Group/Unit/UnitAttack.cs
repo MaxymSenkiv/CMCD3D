@@ -20,7 +20,7 @@ public class UnitAttack : MonoBehaviour
     public void Attack(Vector3 target)
     {
         transform.LookAt(target);
-        if(_canAttack)
+        if(_canAttack && transform.position != target)
             _rigidbody.velocity = _group.Speed * transform.forward;
     }
 
@@ -31,7 +31,7 @@ public class UnitAttack : MonoBehaviour
             _canAttack = false;
             _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
             _group.EnemyCollided = true;
-            _group.AttackTarget = boss.transform;
+            _group.AttackTarget = boss.transform.position;
         }
     }
     
@@ -39,7 +39,9 @@ public class UnitAttack : MonoBehaviour
     {
         _group.UnitsGroup.Remove(GetComponent<Unit>());
         if (!_group.EnemyCollided)
-            _group.AttackTarget = enemy.transform.parent.transform;
+        {
+            _group.Opponent = enemy.transform.parent.GetComponent<EnemyGroup>();
+        }
         _group.EnemyCollided = true;
         Destroy(gameObject);
     }

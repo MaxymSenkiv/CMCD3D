@@ -31,24 +31,24 @@ public class Enemy : Person
         {
             _group.UnitsGroup.Remove(this);
             _group.Speed = unit.GetComponentInParent<PlayerGroup>().Speed;
-            _group.Attack?.Invoke(unit.GetComponentInParent<PlayerGroup>().AverageUnitsPosition);
+            _group.Attack?.Invoke(unit.GetComponentInParent<PlayerGroup>());
             unit.GetComponent<UnitAttack>().EnemyCollided(this);
             Destroy(gameObject);
         }
     }
 
-    private void OnAttack(Vector3 target)
+    private void OnAttack(PlayerGroup playerGroup)
     {
         _group.Attack -= OnAttack;
         _animator.Play("Fast Run");
-        StartCoroutine(Attack(target));
+        StartCoroutine(Attack(playerGroup));
     }
 
-    private IEnumerator Attack(Vector3 target)
+    private IEnumerator Attack(PlayerGroup playerGroup)
     {
-        while (true)
+        while (transform.position != playerGroup.AverageUnitsPosition)
         {
-            transform.LookAt(target);
+            transform.LookAt(playerGroup.AverageUnitsPosition);
             _rigidbody.velocity = _group.Speed * transform.forward;
             yield return null;
         }

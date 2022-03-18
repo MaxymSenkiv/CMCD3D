@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerGroup : Group.Group
 {
-    public Transform AttackTarget;
+    public Vector3 AttackTarget;
+    public EnemyGroup Opponent;
     public bool EnemyCollided;
 }
