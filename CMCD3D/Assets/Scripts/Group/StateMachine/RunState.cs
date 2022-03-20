@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class RunState : State
 {
-    private PlayerGroup _playerGroup;
+    private PlayerUnitsController _playerUnitsController;
 
     private void Awake()
     {
-        _playerGroup = GetComponent<PlayerGroup>();
+        _playerUnitsController = GetComponent<PlayerUnitsController>();
     }
 
     private void OnEnable()
     {
-        StartCoroutine(_playerGroup.GroupUnits());
-        foreach (var unit in _playerGroup.UnitsGroup)
+        StartCoroutine(_playerUnitsController.GroupUnits());
+        foreach (var unit in _playerUnitsController.UnitsGroup)
         {
             unit.GetComponent<Animator>().Play("Fast Run");
         }
@@ -21,7 +21,7 @@ public class RunState : State
 
     private void FixedUpdate()
     {
-        foreach (var unit in _playerGroup.UnitsGroup)
+        foreach (var unit in _playerUnitsController.UnitsGroup)
         {
             unit.GetComponent<UnitRun>().Run();
         }

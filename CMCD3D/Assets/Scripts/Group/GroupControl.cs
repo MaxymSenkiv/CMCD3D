@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GroupControl : MonoBehaviour
 {
-    [SerializeField] private PlayerGroup _group;
+    [FormerlySerializedAs("_group")] [SerializeField] private PlayerUnitsController _unitsController;
     [SerializeField] private float _roadWidth;
     [SerializeField] private Vector3 _lastMousePosition;
     [SerializeField] private float _delta;
 
     private void Start()
     {
-        _group = GetComponent<PlayerGroup>();
+        _unitsController = GetComponent<PlayerUnitsController>();
     }
 
     private void Update()
@@ -40,7 +41,7 @@ public class GroupControl : MonoBehaviour
 
     private bool CanMoveLeft()
     {
-        foreach (var unit in _group.UnitsGroup)
+        foreach (var unit in _unitsController.UnitsGroup)
         {
             if (unit.GetComponent<BordersChecker>().LeftEdge)
                 return false;
@@ -51,7 +52,7 @@ public class GroupControl : MonoBehaviour
     
     private bool CanMoveRight()
     {
-        foreach (var unit in _group.UnitsGroup)
+        foreach (var unit in _unitsController.UnitsGroup)
         {
             if (unit.GetComponent<BordersChecker>().RightEdge)
                 return false;

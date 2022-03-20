@@ -1,20 +1,21 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(UnitAttack))]
 public class Unit : Person
 {
     [SerializeField] private SphereCollider _collider;
-    [SerializeField] private PlayerGroup _group;
-    public UnityAction Died;
-    public UnityAction ObstacleCollided;
+    [FormerlySerializedAs("_group")] [SerializeField] private PlayerUnitsController _unitsController;
+    public event UnityAction Died;
+    public event UnityAction ObstacleCollided;
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<SphereCollider>();
-        _group = transform.parent.GetComponent<PlayerGroup>();
+        _unitsController = transform.parent.GetComponent<PlayerUnitsController>();
         
         Died += OnDied;
         ObstacleCollided += OnObstacleCollided;
@@ -22,7 +23,7 @@ public class Unit : Person
 
     private void OnDied()
     {
-        _group.UnitsGroup.Remove(this);
+        _unitsController.UnitsGroup.Remove(this);
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.constraints = RigidbodyConstraints.None;
         _collider.enabled = false;
@@ -37,10 +38,15 @@ public class Unit : Person
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
-    
+
+    private void OnCollisionEnter(Collision other)
+    {
+        // if ostacle
+    }
+
     private void OnObstacleCollided()
     {
-        _group.UnitsGroup.Remove(this);
+        _unitsController.UnitsGroup.Remove(this);
         Destroy(gameObject);
     }
 }

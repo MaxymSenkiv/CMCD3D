@@ -1,25 +1,49 @@
+using System;
+using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraFollower : MonoBehaviour
 {
-    [SerializeField] private PlayerGroup _group;
-    [SerializeField] private float _offsetZ;
+    [FormerlySerializedAs("_group")] [SerializeField] private PlayerUnitsController _unitsController;
+    private Vector3 _offset;
+
+    [SerializeField] private Transform _targetTransform;
+
+    private bool _isFollowing;
+    private Level _level;
 
     private void Awake()
     {
-        _offsetZ = transform.position.z;
+        _offset = transform.position;
     }
 
-    void LateUpdate()
+    private void Start()
     {
-        if (_group.UnitsGroup.Count == 0)
-        {
-            enabled = false;
-            return;
-        }
+        _level = FindObjectOfType<Level>();
+        _level.LevelStarted += StartFollowing;
+    }
 
-        transform.position = new Vector3(transform.position.x,
-            transform.position.y,
-            _group.AverageUnitsPosition.z + _offsetZ);
+    private void LateUpdate()
+    {
+        if (_isFollowing)
+        {
+            FollowTarget();
+        }
+    }
+
+    private void FollowTarget()
+    {
+        transform.position = _targetTransform.position + _offset;
+    }
+    
+    public void StartFollowing()
+    {
+        _isFollowing = true;
+    }
+
+    public void EndFollowing()
+    {
+        _isFollowing = false;
     }
 }

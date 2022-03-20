@@ -1,16 +1,16 @@
 public class RunTransition : Transition
 {
-    private PlayerGroup _playerGroup;
+    private PlayerUnitsController _playerUnitsController;
 
     public override void Enable()
     {
-        _playerGroup = GetComponent<PlayerGroup>();
+        _playerUnitsController = GetComponent<PlayerUnitsController>();
     }
     
     private void Update()
     {
-        if (_playerGroup.Opponent != null 
-            && _playerGroup.Opponent.UnitsGroup.Count == 0)
+        if (_playerUnitsController.Opponent != null 
+            && _playerUnitsController.Opponent.UnitsGroup.Count == 0)
             NeedTransit = true;
     }
 }

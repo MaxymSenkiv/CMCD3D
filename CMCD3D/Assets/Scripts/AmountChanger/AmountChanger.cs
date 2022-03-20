@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class AmountChanger : MonoBehaviour
 {
-    public UnityAction<PlayerGroup, int> Triggered;
+    public UnityAction<PlayerUnitsController, int> Triggered;
     public bool Multiplied;
     
     private void OnEnable()
@@ -18,14 +16,12 @@ public class AmountChanger : MonoBehaviour
         Triggered -= OnTriggered;
     }
 
-    private void OnTriggered(PlayerGroup playerGroup, int multiplier)
+    private void OnTriggered(PlayerUnitsController playerUnitsController, int multiplier)
     {
         if (!Multiplied)
         {
             Multiplied = true;
-            StartCoroutine(playerGroup.SpawnUnits(playerGroup.UnitsGroup.Count * (multiplier - 1),
-                                                        playerGroup.AverageUnitsPosition,
-                                                        true));
+            playerUnitsController.SpawnUnits(playerUnitsController.UnitsGroup.Count * (multiplier - 1), playerUnitsController.AverageUnitsPosition, true);
         }
     }
 }

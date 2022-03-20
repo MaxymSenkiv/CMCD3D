@@ -1,17 +1,20 @@
-public class AttackState : State
+namespace CMC3D
 {
-    private PlayerGroup _playerGroup;
-
-    private void Awake()
+    public class AttackState : State
     {
-        _playerGroup = GetComponent<PlayerGroup>();
-    }
+        private PlayerUnitsController _playerUnitsController;
 
-    private void Update()
-    {
-        foreach (var unit in _playerGroup.UnitsGroup)
+        private void Awake()
         {
-            unit.GetComponent<UnitAttack>().Attack(_playerGroup.Opponent.AverageUnitsPosition);
+            _playerUnitsController = GetComponent<PlayerUnitsController>();
+        }
+
+        private void Update()
+        {
+            foreach (var unit in _playerUnitsController.UnitsGroup)
+            {
+                unit.GetComponent<UnitAttack>().Attack(_playerUnitsController.Opponent.AverageUnitsPosition);
+            }
         }
     }
 }

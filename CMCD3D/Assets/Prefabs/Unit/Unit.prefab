@@ -679,8 +679,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3001291069492411268}
   - component: {fileID: 3001291069484913736}
-  - component: {fileID: 2576189040336167135}
   - component: {fileID: 6838361755728898683}
+  - component: {fileID: 902418444874345436}
   - component: {fileID: 6838361755728898681}
   - component: {fileID: 2982117536443200262}
   - component: {fileID: 3158714180597003850}
@@ -727,19 +727,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!135 &2576189040336167135
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3001291069492176870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &6838361755728898683
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -748,14 +735,28 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3001291069492176870}
   serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
+  m_Mass: 30
+  m_Drag: 50
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 1
+--- !u!136 &902418444874345436
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001291069492176870}
+  m_Material: {fileID: 13400000, guid: 3eebc7595c8f083418a664533b053471, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.35
+  m_Height: 1.8369557
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.91847783, z: 0}
 --- !u!114 &6838361755728898681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,7 +771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
   _collider: {fileID: 0}
-  _group: {fileID: 0}
+  _unitsController: {fileID: 0}
 --- !u!114 &2982117536443200262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,7 +785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
-  _playerGroup: {fileID: 0}
+  _playerUnitsController: {fileID: 0}
 --- !u!114 &3158714180597003850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,7 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
-  _group: {fileID: 0}
+  _unitsController: {fileID: 0}
   _canAttack: 1
 --- !u!1 &3001291069492176872
 GameObject:

@@ -1,18 +1,18 @@
 public class AttackTransition : Transition
 {
-    private PlayerGroup _playerGroup;
+    private PlayerUnitsController _playerUnitsController;
 
     public override void Enable()
     {
-        _playerGroup = GetComponent<PlayerGroup>();
+        _playerUnitsController = GetComponent<PlayerUnitsController>();
     }
     
     private void Update()
     {
-        if (_playerGroup.EnemyCollided)
+        if (_playerUnitsController.EnemyCollided)
         {
             NeedTransit = true;
-            _playerGroup.EnemyCollided = false;
+            _playerUnitsController.EnemyCollided = false;
         }
     }
 }

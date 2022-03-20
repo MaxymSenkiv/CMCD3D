@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EndOfGameState : State
+public class GameFinishedState : State
 {
     [SerializeField] private TextMeshProUGUI _endText;
     

@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Group
+namespace CMC3D
 {
-    public abstract class Group : MonoBehaviour 
+    public abstract class UnitsController : MonoBehaviour 
     {
         [SerializeField] protected Transform _unit;
         public List<Person> UnitsGroup;
@@ -38,12 +39,31 @@ namespace Group
             }
         }
 
-        private void Awake()
+        private void OnEnable()
         {
-            StartCoroutine(SpawnUnits(_startAmount, AverageUnitsPosition, false));
+            UnitsMultiplier[] list = FindObjectsOfType<UnitsMultiplier>();
+            foreach (UnitsMultiplier unitsMultiplier in list)
+            {
+                unitsMultiplier.UnitsCountChanged += OnUnitsCountChanged;
+            }
         }
 
-        public IEnumerator SpawnUnits(int amounts, Vector3 spawnPoint, bool run)
+        private void OnUnitsCountChanged(int count)
+        {
+            SpawnUnits(count, AverageUnitsPosition, false);
+        }
+
+        private void Start()
+        {
+            // SpawnUnits(_startAmount, AverageUnitsPosition, false);
+        }
+
+        public void SpawnUnits(int amounts, Vector3 spawnPoint, bool run)
+        {
+            StartCoroutine(SpawnUnitsRoutine(_startAmount, AverageUnitsPosition, false));
+        }
+        
+        private IEnumerator SpawnUnitsRoutine(int amounts, Vector3 spawnPoint, bool run)
         {
             for (int i = 0; i < amounts; i++)
             {

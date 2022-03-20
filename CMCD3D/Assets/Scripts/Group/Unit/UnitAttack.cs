@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Unit), typeof(UnitRun), typeof(BordersChecker))]
 public class UnitAttack : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private PlayerGroup _group;
+    [FormerlySerializedAs("_group")] [SerializeField] private PlayerUnitsController _unitsController;
     public UnityAction<Enemy> EnemyCollided;
     
     public bool _canAttack = true;
@@ -13,7 +14,7 @@ public class UnitAttack : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _group = transform.parent.GetComponent<PlayerGroup>();
+        _unitsController = transform.parent.GetComponent<PlayerUnitsController>();
         EnemyCollided += OnEnemyCollided;
     }
     
@@ -21,7 +22,7 @@ public class UnitAttack : MonoBehaviour
     {
         transform.LookAt(target);
         if(_canAttack && transform.position != target)
-            _rigidbody.velocity = _group.Speed * transform.forward;
+            _rigidbody.velocity = _unitsController.Speed * transform.forward;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -30,19 +31,19 @@ public class UnitAttack : MonoBehaviour
         {
             _canAttack = false;
             _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-            _group.EnemyCollided = true;
-            _group.AttackTarget = boss.transform.position;
+            _unitsController.EnemyCollided = true;
+            _unitsController.AttackTarget = boss.transform.position;
         }
     }
     
     private void OnEnemyCollided(Enemy enemy)
     {
-        _group.UnitsGroup.Remove(GetComponent<Unit>());
-        if (!_group.EnemyCollided)
+        _unitsController.UnitsGroup.Remove(GetComponent<Unit>());
+        if (!_unitsController.EnemyCollided)
         {
-            _group.Opponent = enemy.transform.parent.GetComponent<EnemyGroup>();
+            _unitsController.Opponent = enemy.transform.parent.GetComponent<EnemyUnitsController>();
         }
-        _group.EnemyCollided = true;
+        _unitsController.EnemyCollided = true;
         Destroy(gameObject);
     }
 }

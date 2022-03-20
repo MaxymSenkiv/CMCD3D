@@ -1,21 +1,25 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class AmountOfUnitsObserver : MonoBehaviour
+namespace CMC3D
 {
-    [SerializeField] private Group.Group _group;
-    [SerializeField] private TextMeshProUGUI _text;
-
-    private void Start()
+    public class AmountOfUnitsObserver : MonoBehaviour
     {
-        _text = GetComponentInChildren<TextMeshProUGUI>();
-    }
+        [FormerlySerializedAs("_group")] [SerializeField] private UnitsController _unitsController;
+        [SerializeField] private TextMeshProUGUI _text;
 
-    private void Update()
-    {
-        if (_group.UnitsGroup.Count == 0)
-            Destroy(gameObject);
-        _text.text = _group.UnitsGroup.Count.ToString();
-        transform.position = _group.AverageUnitsPosition + Vector3.up * 5;
+        private void Start()
+        {
+            _text = GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        private void Update()
+        {
+            if (_unitsController.UnitsGroup.Count == 0)
+                Destroy(gameObject);
+            _text.text = _unitsController.UnitsGroup.Count.ToString();
+            transform.position = _unitsController.AverageUnitsPosition + Vector3.up * 5;
+        }
     }
 }

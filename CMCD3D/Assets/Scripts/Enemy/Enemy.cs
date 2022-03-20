@@ -1,55 +1,55 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Enemy : Person
 {
     [SerializeField] protected Animator _animator;
-    [SerializeField] protected EnemyGroup _group;
+    [FormerlySerializedAs("_group")] [SerializeField] protected EnemyUnitsController _unitsController;
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
-        _group = transform.parent.GetComponent<EnemyGroup>();
+        _unitsController = transform.parent.GetComponent<EnemyUnitsController>();
     }
 
     private void OnEnable()
     {
-        _group.Attack += OnAttack;
+        _unitsController.Attack += OnAttack;
     }
 
     private void OnDisable()
     {
-        _group.Attack -= OnAttack;
+        _unitsController.Attack -= OnAttack;
     }
     
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent<Unit>(out Unit unit) &&
-            unit.GetComponentInParent<PlayerGroup>().UnitsGroup.Contains(unit) &&
-            _group.UnitsGroup.Contains(this))
+            unit.GetComponentInParent<PlayerUnitsController>().UnitsGroup.Contains(unit) &&
+            _unitsController.UnitsGroup.Contains(this))
         {
-            _group.UnitsGroup.Remove(this);
-            _group.Speed = unit.GetComponentInParent<PlayerGroup>().Speed;
-            _group.Attack?.Invoke(unit.GetComponentInParent<PlayerGroup>());
+            _unitsController.UnitsGroup.Remove(this);
+            _unitsController.Speed = unit.GetComponentInParent<PlayerUnitsController>().Speed;
+            _unitsController.Attack?.Invoke(unit.GetComponentInParent<PlayerUnitsController>());
             unit.GetComponent<UnitAttack>().EnemyCollided(this);
             Destroy(gameObject);
         }
     }
 
-    private void OnAttack(PlayerGroup playerGroup)
+    private void OnAttack(PlayerUnitsController playerUnitsController)
     {
-        _group.Attack -= OnAttack;
+        _unitsController.Attack -= OnAttack;
         _animator.Play("Fast Run");
-        StartCoroutine(Attack(playerGroup));
+        StartCoroutine(Attack(playerUnitsController));
     }
 
-    private IEnumerator Attack(PlayerGroup playerGroup)
+    private IEnumerator Attack(PlayerUnitsController playerUnitsController)
     {
-        while (transform.position != playerGroup.AverageUnitsPosition)
+        while (transform.position != playerUnitsController.AverageUnitsPosition)
         {
-            transform.LookAt(playerGroup.AverageUnitsPosition);
-            _rigidbody.velocity = _group.Speed * transform.forward;
+            transform.LookAt(playerUnitsController.AverageUnitsPosition);
+            _rigidbody.velocity = _unitsController.Speed * transform.forward;
             yield return null;
         }
     }

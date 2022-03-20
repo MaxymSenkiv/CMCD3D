@@ -18,11 +18,11 @@ public class Boss : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Unit unit) && !_attack)
         {
-            StartCoroutine(Attack(collision.transform.parent.GetComponent<PlayerGroup>()));
+            StartCoroutine(Attack(collision.transform.parent.GetComponent<PlayerUnitsController>()));
         }
     }
 
-    private IEnumerator Attack(PlayerGroup playerGroup)
+    private IEnumerator Attack(PlayerUnitsController playerUnitsController)
     {
         _attack = true;
         _animator.Play("Kick");
@@ -30,18 +30,13 @@ public class Boss : MonoBehaviour
         {
             List<Unit> deadUnits = new List<Unit>();
             yield return new WaitForSeconds(0.5f);
-            foreach (var unit in playerGroup.UnitsGroup)
+            foreach (var unit in playerUnitsController.UnitsGroup)
             {
                 if (Vector3.Distance(transform.position, unit.transform.position) < _attackDistance
                     && deadUnits.Count < _maxDamage)
                 {
                     deadUnits.Add((Unit)unit);
                 }
-            }
-
-            foreach (var unit in deadUnits)
-            {
-                unit.Died?.Invoke();
             }
 
             yield return new WaitForSeconds(1f);

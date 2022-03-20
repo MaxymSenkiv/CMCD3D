@@ -1,15 +1,15 @@
 public class EndOfGameTransition : Transition
 {
-    private PlayerGroup _group;
+    private PlayerUnitsController _unitsController;
     
     private void Awake()
     {
-        _group = GetComponent<PlayerGroup>();
+        _unitsController = GetComponent<PlayerUnitsController>();
     }
 
     private void Update()
     {
-        if (_group.UnitsGroup.Count == 0)
+        if (_unitsController.UnitsGroup.Count == 0)
             NeedTransit = true;
     }
     
